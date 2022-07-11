@@ -22,7 +22,8 @@ namespace OcelotApiGw
             services.AddOcelot().AddCacheManager(x =>
             {
                 x.WithDictionaryHandle();
-            });
+            })
+            .AddSingletonDefinedAggregator<MyAggregator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

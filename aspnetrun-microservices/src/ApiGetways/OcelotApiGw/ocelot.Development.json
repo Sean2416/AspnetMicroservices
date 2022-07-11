@@ -10,6 +10,7 @@
           "Port": "80"
         }
       ],
+      "Key": "Catalog",
       "UpstreamPathTemplate": "/Catalog",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "FileCacheOptions": { "TtlSeconds": 30 }
@@ -99,6 +100,7 @@
           "Port": "80"
         }
       ],
+      "Key": "Discount",
       "UpstreamPathTemplate": "/Discount/{productName}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
@@ -126,6 +128,15 @@
       ],
       "UpstreamPathTemplate": "/Order/{userName}",
       "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "Catalog",
+        "Discount"
+      ],
+      "UpstreamPathTemplate": "/GetDetail/{productName}"
     }
   ],
   "GlobalConfiguration": {

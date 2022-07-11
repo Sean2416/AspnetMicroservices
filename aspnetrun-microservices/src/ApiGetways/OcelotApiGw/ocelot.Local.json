@@ -10,12 +10,26 @@
           "Port": "8000"
         }
       ],
+      "Key": "Catalog",
       "UpstreamPathTemplate": "/Catalog",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "FileCacheOptions": {
         "TtlSeconds": 30,
         "Region": "somename"
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Discount/{Name}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8002"
+        }
+      ],
+      "Key": "Discount",
+      "UpstreamPathTemplate": "/Discount/{Name}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/{id}",
@@ -129,6 +143,15 @@
       ],
       "UpstreamPathTemplate": "/Order/{userName}",
       "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "Catalog",
+        "Discount"
+      ],
+      "UpstreamPathTemplate": "/GetDetail/{Name}"
     }
   ],
   "GlobalConfiguration": {
