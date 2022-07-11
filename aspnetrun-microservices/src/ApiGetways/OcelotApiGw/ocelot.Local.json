@@ -1,5 +1,5 @@
 {
-  "Routes": [
+    "Routes": [
     //Catalog API
     {
       "DownstreamPathTemplate": "/api/v1/Catalog",
@@ -7,16 +7,23 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
+          "Port": "8900"
+        },
+        {
+          "Host": "localhost",
           "Port": "8000"
         }
       ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
       "Key": "Catalog",
       "UpstreamPathTemplate": "/Catalog",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
-      "FileCacheOptions": {
-        "TtlSeconds": 30,
-        "Region": "somename"
-      }
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      //"FileCacheOptions": {
+      //  "TtlSeconds": 30,
+      //  "Region": "somename"
+      //}
     },
     {
       "DownstreamPathTemplate": "/api/v1/Discount/{Name}",
